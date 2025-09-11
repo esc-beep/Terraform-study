@@ -1,0 +1,30 @@
+# Local Terraform state files
+*.tfstate
+*.tfstate.*.backup
+
+# .terraform folder contains provider plugins and modules
+.terraform/
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# Environment-Specific Files
+*.tfvars
+
+# Generated Files & Secrets
+**/local-exec-output-files/
+
+# Private SSH keys
+**/private-key/
+
+# General OS / Editor Files
+.DS_Store
+.vscode/
