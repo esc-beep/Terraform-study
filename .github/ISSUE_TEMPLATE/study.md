@@ -1,6 +1,6 @@
 ---
 name: 📖 Study Issue
-about: Terraform 학습 또는 과제 기록용 이슈
+about: 학습 또는 과제 기록용 이슈
 title: "[Study] 주차/주제"
 labels: ["study"]
 assignees: []
