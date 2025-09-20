@@ -1,34 +1,54 @@
 output "vpc_id" {
-  description = "The ID of the VPC."
-  value       = module.vpc.vpc_id
+  description = "vpc id"
+  value       = aws_vpc.main.id
 }
 
 output "vpc_cidr_block" {
-  description = "The CIDR block of the VPC."
-  value       = module.vpc.vpc_cidr_block
+  description = "VPC cidr block"
+  value       = aws_vpc.main.cidr_block
 }
 
-output "public_subnets" {
-  description = "List of IDs of the public subnets."
-  value       = module.vpc.public_subnets
+output "public_subnet_ids" {
+  description = "pub sbn id lists"
+  value       = aws_subnet.public[*].id
 }
 
-output "private_subnets" {
-  description = "List of IDs of the private subnets."
-  value       = module.vpc.private_subnets
+output "private_subnet_ids" {
+  description = "pri sbn id lists"
+  value       = aws_subnet.private[*].id
 }
 
-output "database_subnets" {
-  description = "List of IDs of the database subnets."
-  value       = module.vpc.database_subnets
+output "internet_gateway_id" {
+  description = "igw id"
+  value       = aws_internet_gateway.main.id
 }
 
-output "nat_public_ips" {
-  description = "List of public EIPs for the NAT Gateways."
-  value       = module.vpc.nat_public_ips
+output "nat_gateway_id" {
+  description = "NAT GW id"
+  value       = var.enable_nat_gateway && length(var.private_subnets) > 0 ? aws_nat_gateway.main[0].id : null
 }
 
-output "availability_zones" {
-  description = "A list of availability zones used by the VPC."
-  value       = module.vpc.azs
+output "public_route_table_id" {
+  description = "pub rt id"
+  value       = aws_route_table.public.id
+}
+
+output "private_route_table_id" {
+  description = "priv rt id"
+  value       = length(var.private_subnets) > 0 ? aws_route_table.private[0].id : null
+}
+
+output "database_subnet_ids" {
+  description = "Database subnet IDs"
+  value       = aws_subnet.database[*].id
+}
+
+output "database_route_table_id" {
+  description = "Database route table ID"
+  value       = length(var.database_subnets) > 0 ? aws_route_table.database[0].id : null
+}
+
+output "database_subnet_group_name" {
+  description = "Database subnet group name"
+  value       = var.create_database_subnet_group && length(var.database_subnets) > 0 ? aws_db_subnet_group.database[0].name : null
 }
