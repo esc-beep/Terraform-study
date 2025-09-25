@@ -20,3 +20,20 @@ variable "ec2_key_name" {
   type        = string
   default = "terraform-key"
 }
+
+variable "acm_certificate_arn" {
+  description = "ARN of the ACM certificate for the ALB"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Password for the RDS master user. Use a strong password!"
+  type        = string
+  sensitive   = true
+}
+
+variable "domain_name" {
+  description = "The domain name you have registered in Route 53"
+  type        = string
+  default     = "terraform-study-esc.shop"
+}
